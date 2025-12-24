@@ -40,6 +40,32 @@ body {
     margin-bottom: 20px;
 }
 
+.top-intro {
+    margin: 30px auto 0 auto;
+    max-width: 900px;
+    background: #f8f9fa;
+    color: #333;
+    border-radius: 8px;
+    padding: 20px 32px;
+    font-size: 1.08em;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.15);
+    border-left: 4px solid #667eea;
+    text-align: left;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.top-intro:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.top-intro-content {
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+
 .contact-info {
     display: flex;
     justify-content: center;
@@ -235,4 +261,76 @@ body {
         transform: none;
         box-shadow: none;
     }
+}
+
+/* 注解相关样式 */
+.annotations-section {
+    padding: 40px;
+    background: #f8f9fa;
+    border-top: 3px solid #667eea;
+}
+
+.annotations-content {
+    margin-top: 20px;
+}
+
+.annotation-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #764ba2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.annotation-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.annotation-term {
+    font-weight: 600;
+    color: #764ba2;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.annotation-term::before {
+    content: "📌";
+    color: #667eea;
+}
+
+.annotation-definition {
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+
+/* 可点击的关键词样式 */
+.annotated-term {
+    background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+    color: #667eea;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: #764ba2;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 1px 3px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.annotated-term:hover {
+    background: linear-gradient(135deg, #667eea30 0%, #764ba230 100%);
+    color: #764ba2;
+    text-decoration-style: solid;
+}
+
+.annotated-term:active {
+    transform: scale(0.95);
 }
