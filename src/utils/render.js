@@ -10,8 +10,7 @@ export function renderResume(resumeData) {
     document.getElementById('subtitle').textContent = 
         `${processedData.basicInfo.title} · ${processedData.basicInfo.school}`;
     
-    // 顶部个人简介
-    document.getElementById('topIntro').innerHTML = `<div class='top-intro-content'>基本简介：2022杭电硕士毕业，校招入美团，在美团酒旅大前端工作，两年L7，涉及RN、Android、部分鸿蒙业务开发，端智能、营销触达、性能优化相关技术项目，有后端项目经验。</div>`;
+    
 
     // 渲染联系方式
     const contactInfoHTML = processedData.basicInfo.contacts.map(contact => `
@@ -24,28 +23,33 @@ export function renderResume(resumeData) {
 
     // 渲染工作经历
     const workExperienceHTML = processedData.workExperience.map(work => {
-        const projectsHTML = work.projects.map(project => `
-            <div class="experience-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">${work.company}</div>
-                        <div class="item-position">${work.position}</div>
-                    </div>
-                    <div class="item-date">${work.date}</div>
+        return `
+            <div class="work-company-section">
+                <div class="company-info">
+                    <div class="company-name">${work.company}</div>
+                    <div class="item-position">${work.position}</div>
                 </div>
-                <div class="item-description">
-                    <p><strong>项目：${project.name}</strong></p>
-                    ${project.description ? `<p><strong>项目描述：</strong>${project.description}</p>` : ''}
-                    ${project.challenges ? `<p><strong>技术难点：</strong>${project.challenges}</p>` : ''}
-                    ${project.highlights ? `<p><strong>技术亮点：</strong>${project.highlights}</p>` : ''}
-                    ${project.responsibility ? `<p><strong>责任描述：</strong>${project.responsibility}</p>` : ''}
-                </div>
-                <div class="tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                <div class="projects-container">
+                    ${work.projects.map(project => `
+                        <div class="experience-item">
+                            <div class="project-header">
+                                <h3 class="project-title">${project.name}</h3>
+                                <div class="project-date">${project.date}</div>
+                            </div>
+                            <div class="item-description">
+                                ${project.description ? `<p><strong>项目描述：</strong>${project.description}</p>` : ''}
+                                ${project.challenges ? `<p><strong>技术难点：</strong>${project.challenges}</p>` : ''}
+                                ${project.highlights ? `<p><strong>技术亮点：</strong>${project.highlights}</p>` : ''}
+                                ${project.responsibility ? `<p><strong>责任描述：</strong>${project.responsibility}</p>` : ''}
+                            </div>
+                            <div class="tags">
+                                ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
             </div>
-        `).join('');
-        return projectsHTML;
+        `;
     }).join('');
     document.getElementById('workExperience').innerHTML = workExperienceHTML;
 
@@ -76,22 +80,6 @@ export function renderResume(resumeData) {
     `).join('');
     document.getElementById('education').innerHTML = educationHTML;
 
-    // 渲染其他项目
-    const projectsHTML = processedData.projects.map(project => `
-        <div class="project-item">
-            <div class="item-title">${project.name}</div>
-            <div class="item-description">
-                ${project.description ? `<p><strong>项目描述：</strong>${project.description}</p>` : ''}
-                ${project.challenges ? `<p><strong>技术难点：</strong>${project.challenges}</p>` : ''}
-                ${project.highlights ? `<p><strong>技术亮点：</strong>${project.highlights}</p>` : ''}
-                ${project.responsibility ? `<p><strong>责任描述：</strong>${project.responsibility}</p>` : ''}
-            </div>
-            <div class="tags">
-                ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-        </div>
-    `).join('');
-    document.getElementById('projects').innerHTML = projectsHTML;
 
     // 渲染个人简介
     const selfIntroHTML = processedData.selfIntro.map(intro => `
